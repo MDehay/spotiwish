@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:spotiwish/screen/musicpage/widgets/AppBarMusic.dart';
+import 'package:spotiwish/screen/musicpage/widgets/BottomBarMusic.dart';
 
 class MyMusicPage extends StatefulWidget {
   const MyMusicPage({Key? key}) : super(key: key);
@@ -26,7 +27,7 @@ class _MyMusicPageState extends State<MyMusicPage> {
               Text("Image", style: TextStyle(color: Colors.white)),
               Text("Titre + Artiste", style: TextStyle(color: Colors.white)),
               Text("Slider", style: TextStyle(color: Colors.white)),
-              Text("Liste Bouton ", style: TextStyle(color: Colors.white)),
+              BottomBarMusic(),
             ],
           ),
         ),
