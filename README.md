@@ -1,16 +1,3 @@
-# spotiwish
+# Spotiwish
 
-Clone of spotify
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Lien vers la documentation de l'application : https://docs.google.com/document/d/1r63GPXfRD4qILUvrqM_vn8UO0DR4oU8nfzTbZ34AjTg/edit?usp=sharing 

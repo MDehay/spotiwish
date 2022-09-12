@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:spotiwish/screen/musicpage/widgets/AppBarMusic.dart';
 import 'package:spotiwish/screen/musicpage/widgets/BottomBarMusic.dart';
+import 'package:spotiwish/screen/musicpage/widgets/SliderMusic.dart';
 
 class MyMusicPage extends StatefulWidget {
   const MyMusicPage({Key? key}) : super(key: key);
@@ -10,6 +11,8 @@ class MyMusicPage extends StatefulWidget {
 }
 
 class _MyMusicPageState extends State<MyMusicPage> {
+  double _currentTime = 0.0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,12 +29,17 @@ class _MyMusicPageState extends State<MyMusicPage> {
               Text("Titre 1", style: TextStyle(color: Colors.white)),
               Text("Image", style: TextStyle(color: Colors.white)),
               Text("Titre + Artiste", style: TextStyle(color: Colors.white)),
-              Text("Slider", style: TextStyle(color: Colors.white)),
+              SliderMusic(currentTime: _currentTime, callback: changeTimeValue,),
               BottomBarMusic(),
             ],
           ),
         ),
       ),
     );
+  }
+  void changeTimeValue(double value){
+    setState(() {
+      _currentTime = value;
+    });
   }
 }

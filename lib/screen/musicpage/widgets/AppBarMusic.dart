@@ -12,14 +12,14 @@ class AppBarMusic extends StatelessWidget with PreferredSizeWidget{
         onPressed: () {
           print("EXIT");
         },
-        icon: Icon(Icons.arrow_back_ios, color: Colors.white),
+        icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
       ),
       actions: [
         IconButton(
           onPressed: () {
             print("Settings");
           },
-          icon: Icon(Icons.more_vert),
+          icon: const Icon(Icons.more_vert),
         )
       ],
     );
@@ -27,5 +27,5 @@ class AppBarMusic extends StatelessWidget with PreferredSizeWidget{
 
   @override
   // TODO: implement preferredSize
-  Size get preferredSize => Size.fromHeight(kToolbarHeight);
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }
