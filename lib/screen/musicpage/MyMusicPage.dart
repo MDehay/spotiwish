@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:spotiwish/modal/Album.dart';
+import 'package:spotiwish/modal/Song.dart';
 import 'package:spotiwish/screen/musicpage/widgets/AppBarMusic.dart';
 import 'package:spotiwish/screen/musicpage/widgets/BottomBarMusic.dart';
+import 'package:spotiwish/screen/musicpage/widgets/CoverAlbum.dart';
+import 'package:spotiwish/screen/musicpage/widgets/InformationMusic.dart';
 import 'package:spotiwish/screen/musicpage/widgets/SliderMusic.dart';
+import 'package:spotiwish/service/constantData.dart';
 
 class MyMusicPage extends StatefulWidget {
   const MyMusicPage({Key? key}) : super(key: key);
@@ -12,9 +17,11 @@ class MyMusicPage extends StatefulWidget {
 
 class _MyMusicPageState extends State<MyMusicPage> {
   double _currentTime = 0.0;
+  int _index = 4;
 
   @override
   Widget build(BuildContext context) {
+    Song currentAlbum = album_test.songs[_index];
     return Scaffold(
       appBar: AppBarMusic(),
       body: Container(
@@ -26,18 +33,50 @@ class _MyMusicPageState extends State<MyMusicPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Text("Titre 1", style: TextStyle(color: Colors.white)),
-              Text("Image", style: TextStyle(color: Colors.white)),
-              Text("Titre + Artiste", style: TextStyle(color: Colors.white)),
-              SliderMusic(currentTime: _currentTime, callback: changeTimeValue,),
-              BottomBarMusic(),
+              InformationMusic(
+                  titre: album_test.name,
+                  artiste: "${_index + 1} of ${album_test.songs.length}",
+                  height: 40,
+                  titleSize: 16,
+                  artisteSize: 10),
+              CoverAlbum(asset_path: album_test.asset_url),
+              InformationMusic(
+                  titre: currentAlbum.name, artiste: currentAlbum.artiste),
+              SliderMusic(
+                timer: (currentAlbum.time).toDouble(),
+                currentTime: _currentTime,
+                callback: changeTimeValue,
+              ),
+              BottomBarMusic(
+                callback: changeMusic,
+              ),
             ],
           ),
         ),
       ),
     );
   }
-  void changeTimeValue(double value){
+
+  void changeMusic(bool isNext) {
+    setState(() {
+      if (isNext) {
+        if (_index + 1 == album_test.songs.length) {
+          _index = 0;
+        } else {
+          _index++;
+        }
+      } else {
+        if (_index - 1 < 0) {
+          _index = album_test.songs.length - 1;
+        } else {
+          _index--;
+        }
+      }
+      _currentTime = 0.0;
+    });
+  }
+
+  void changeTimeValue(double value) {
     setState(() {
       _currentTime = value;
     });

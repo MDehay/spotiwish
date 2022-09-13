@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 class SliderMusic extends StatelessWidget {
-  const SliderMusic({Key? key, required this.currentTime, required this.callback}) : super(key: key);
+  const SliderMusic({Key? key, required this.currentTime, required this.callback, required this.timer}) : super(key: key);
 
   final double currentTime;
+  final double timer;
   final Function callback;
   @override
   Widget build(BuildContext context) {
@@ -12,7 +13,7 @@ class SliderMusic extends StatelessWidget {
         Slider(
           inactiveColor: Colors.grey[600],
           value: currentTime,
-          max: 100,
+          max: timer,
           onChanged: (value) => callback(value),
         ),
         Row(
@@ -23,7 +24,7 @@ class SliderMusic extends StatelessWidget {
               style: const TextStyle(color: Colors.white),
             ),
             Text(
-              timerModal(100),
+              timerModal(timer),
               style: const TextStyle(color: Colors.white),
             ),
           ],
@@ -35,6 +36,8 @@ class SliderMusic extends StatelessWidget {
   String timerModal(double time){
     int seconde = (time % 60).floor();
     int minute = (time / 60).floor();
-    return "$minute:$seconde";
+    String formatMinute = (minute < 10 ) ? "0$minute" : "$minute";
+    String formatSeconde = (seconde < 10) ? "0$seconde" : "$seconde" ;
+    return "$formatMinute:$formatSeconde";
   }
 }

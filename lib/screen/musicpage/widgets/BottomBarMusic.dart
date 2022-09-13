@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class BottomBarMusic extends StatelessWidget {
-  const BottomBarMusic({Key? key}) : super(key: key);
-
+  const BottomBarMusic({Key? key, required this.callback}) : super(key: key);
+  final Function callback;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -24,9 +24,7 @@ class BottomBarMusic extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               IconButton(
-                onPressed: () {
-                  print("Retour en arrière");
-                },
+                onPressed: () => callback(false),
                 icon: const Icon(
                   Icons.arrow_back,
                   color: Colors.white,
@@ -42,9 +40,7 @@ class BottomBarMusic extends StatelessWidget {
                 ),
               ),
               IconButton(
-                onPressed: () {
-                  print("Avancer");
-                },
+                onPressed: () => callback(true),
                 icon: const Icon(
                   Icons.arrow_forward,
                   color: Colors.white,
