@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 class BottomBarMusic extends StatelessWidget {
-  const BottomBarMusic({Key? key, required this.callback}) : super(key: key);
+  const BottomBarMusic({Key? key, required this.callback, required this.callbackAudio, required this.isPlay}) : super(key: key);
   final Function callback;
+  final Function callbackAudio;
+  final bool isPlay;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -31,11 +33,9 @@ class BottomBarMusic extends StatelessWidget {
                 ),
               ),
               IconButton(
-                onPressed: () {
-                  print("Pause");
-                },
-                icon: const Icon(
-                  Icons.pause,
+                onPressed: () => callbackAudio(),
+                icon: Icon(
+                  (isPlay) ? Icons.pause : Icons.play_arrow,
                   color: Colors.white,
                 ),
               ),

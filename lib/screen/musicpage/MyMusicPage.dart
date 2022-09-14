@@ -1,5 +1,5 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
-import 'package:spotiwish/modal/Album.dart';
 import 'package:spotiwish/modal/Song.dart';
 import 'package:spotiwish/screen/musicpage/widgets/AppBarMusic.dart';
 import 'package:spotiwish/screen/musicpage/widgets/BottomBarMusic.dart';
@@ -17,7 +17,9 @@ class MyMusicPage extends StatefulWidget {
 
 class _MyMusicPageState extends State<MyMusicPage> {
   double _currentTime = 0.0;
-  int _index = 4;
+  int _index = 0;
+  bool _isPlay = false;
+  final AudioPlayer _audioPlayer = AudioPlayer();
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +51,8 @@ class _MyMusicPageState extends State<MyMusicPage> {
               ),
               BottomBarMusic(
                 callback: changeMusic,
+                callbackAudio: play,
+                isPlay: _isPlay,
               ),
             ],
           ),
@@ -79,6 +83,17 @@ class _MyMusicPageState extends State<MyMusicPage> {
   void changeTimeValue(double value) {
     setState(() {
       _currentTime = value;
+    });
+  }
+
+  Future<void> play() async{
+    if(_isPlay){
+      await _audioPlayer.pause();
+    } else{
+      await _audioPlayer.play(DeviceFileSource(album_test.songs[_index].song_url));
+    }
+    setState(() {
+      _isPlay = !_isPlay;
     });
   }
 }
